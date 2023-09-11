@@ -1,10 +1,10 @@
 import PySimpleGUI as sg
 
 layout = [
-    [sg.Text('Text'), sg.Spin(['Item 1', 'Item 2'])],
-    [sg.Button('Button', key = 'Button1')],
+    [sg.Text('Text', enable_events = True, key = '-TEXT-'), sg.Spin(['Item 1', 'Item 2'])],
+    [sg.Button('Button', key = '-BUTTON1-')],
     [sg.Input()],
-    [sg.Text('Test'), sg.Button('Test Button', key = 'Button2')]
+    [sg.Text('Test'), sg.Button('Test Button', key = '-BUTTON2-')]
 ]
 
 window = sg.Window('Converter', layout)
@@ -14,10 +14,13 @@ while True:
 
     if event == sg.WIN_CLOSED:
         break
-    if event == 'Button1':
+    if event == '-BUTTON1-':
         print('button pressed')
-    if event == 'Button2':
+    if event == '-BUTTON2-':
         print('something else')
+    if event == '-TEXT-':
+        print('text was pressed')
 
+    print(event)
 
 window.close()
