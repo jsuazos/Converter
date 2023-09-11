@@ -1,10 +1,20 @@
 import PySimpleGUI as sg
 
 layout = [
-    [sg.Text('Text', enable_events = True, key = '-TEXT-'), sg.Spin(['Item 1', 'Item 2'])],
-    [sg.Button('Button', key = '-BUTTON1-')],
-    [sg.Input()],
-    [sg.Text('Test'), sg.Button('Test Button', key = '-BUTTON2-')]
+    [
+        sg.Input(key = '-INPUT-'),
+        sg.Spin(
+            [
+                'km a millas', 
+                'kgs a libras', 
+                'seg a minu'
+            ], 
+            key = '-UNITS-'), 
+        sg.Button('Convertir', key = '-CONVERT-')
+    ],
+    [
+        sg.Text('Output', key = '-OUTPUT-')
+    ]
 ]
 
 window = sg.Window('Converter', layout)
@@ -14,13 +24,15 @@ while True:
 
     if event == sg.WIN_CLOSED:
         break
-    if event == '-BUTTON1-':
-        print('button pressed')
-    if event == '-BUTTON2-':
-        print('something else')
-    if event == '-TEXT-':
-        print('text was pressed')
 
-    print(event)
+    if event == '-CONVERT-':
+        input_value = values['-INPUT-']
+        if input_value.isnumeric():
+            match values['-UNITS-']:
+                case 'km a millas':
+                    output = round(float(input_value) * 0.06214, 2)
+                    output_string = f'{input_value} kms son {output} en millas'
+            
+            window['-OUTPUT-'].update(output_string)
 
 window.close()
