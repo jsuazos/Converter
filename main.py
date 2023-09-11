@@ -30,9 +30,17 @@ while True:
         if input_value.isnumeric():
             match values['-UNITS-']:
                 case 'km a millas':
-                    output = round(float(input_value) * 0.06214, 2)
-                    output_string = f'{input_value} kms son {output} en millas'
+                    output = round(float(input_value) * 0.6214, 2)
+                    output_string = f'{input_value} kms son {output} millas.'
+                case 'kgs a libras':
+                    output = round(float(input_value) * 2.20462, 2)
+                    output_string = f'{input_value} kg. son {output} libras.'
+                case 'seg a minu':
+                    output = round(float(input_value) / 60, 2)
+                    output_string = f'{input_value} segundos son {output} minutos.'
             
             window['-OUTPUT-'].update(output_string)
+        else:
+            window['-OUTPUT-'].update('Por favor ingrese un número.')
 
 window.close()
